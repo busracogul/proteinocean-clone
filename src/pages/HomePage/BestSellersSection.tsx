@@ -57,7 +57,7 @@ const BestsellersSection = () => {
   return (
     <section className="container mx-auto p-4">
       <h2 className="text-xl font-semibold leading-8 mb-4 flex justify-center">ÇOK SATANLAR</h2>
-      <div className="grid grid-cols-6 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         {products.map((product, index) => (
           <ProductCard
             key={index}

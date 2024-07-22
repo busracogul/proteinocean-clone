@@ -6,7 +6,7 @@ interface ShowcaseProps {
 function ShowcaseSection({ imageSrc, imageLogo }: ShowcaseProps) {
   return (
     <div className="relative text-center">
-      <img src={imageSrc} alt="Main Image" className="w-full h-auto" />
+      <img src={imageSrc} alt="Main Image" className="w-full h-auto sm:h-80 md:h-auto object-cover md:object-contain" />
       {imageLogo && (
         <div className="container">
           <img

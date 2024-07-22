@@ -9,7 +9,7 @@ function PopularProductsSection() {
     },
     {
       image: "src/assets/HomePage/image/vitaminler.jpg",
-      title: "VİTAMİNLER",
+      title: "VİTA-MİNLER",
       buttonText: "İNCELE",
     },
     {
@@ -36,8 +36,8 @@ function PopularProductsSection() {
 
   return (
     <>
-      <div className="container">
-        <div className="grid grid-cols-3">
+      <div className="mx-1 md:container">
+        <div className="grid grid-cols-2 md:grid-cols-3 ">
           {products.map((product, index) => (
             <FeatureProductCard
               key={index}

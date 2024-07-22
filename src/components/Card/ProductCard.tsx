@@ -19,9 +19,9 @@ function ProductCard({
 }: ProductCard) {
   return (
     <>
-      <div className="relative p-3 text-center">
+      <div className="relative sm:w-48 p-3 text-center">
         {discountPrice && (
-          <div className="absolute -top-2 -right-3 w-[60px] h-[50px] bg-[#ED2727] p-2 text-white rounded-bl-lg">
+          <div className="absolute -top-2 -right-2 sm:-top-2 sm:-right-3 w-[60px] h-[50px] bg-[#ED2727] p-2 text-white rounded-bl-lg">
             <div className="w-[42px] h-[20px] font-bold text-sm ">
               %{discountPrice}
             </div>
@@ -35,7 +35,7 @@ function ProductCard({
           alt={name}
           className="w-[168px] h-[168px] object-cover mb-4"
         />
-        <h2 className="text-xl mb-2 h-8">{name}</h2>
+        <h2 className="text-xl mb-2  h-8">{name}</h2>
         <p className="text-gray-400 mb-2 h-8">{description}</p>
         <div className="mt-4 mb-4">
           <span className="text-yellow-500 ml-2">{rating} ★</span>
