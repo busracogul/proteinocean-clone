@@ -7,6 +7,10 @@ interface Size {
   isSelected: boolean;
   discount: number | null;
 }
+interface ProductFeature {
+  title: string;
+  description: string;
+}
 
 interface Product {
   name: string;
@@ -19,6 +23,7 @@ interface Product {
   expiryDate: string;
   aromas: string[];
   sizes: Size[];
+  features: ProductFeature[];
 }
 
 const products: Product[] = [
@@ -51,19 +56,33 @@ const products: Product[] = [
         discount: 6,
       },
     ],
+    features: [
+      {
+        title: "ÖZELLİKLER",
+        description: "özellikler açıklama",
+      },
+      {
+        title: "BESİN İÇERİĞİ",
+        description: "besin içeriği açıklama.",
+      },
+      {
+        title: "KULLANIM ŞEKLİ",
+        description: "kullanım şekli açıklama",
+      },
+    ],
   },
   // Diğer ürünler
 ];
 
 const aromaColors: { [key: string]: string } = {
-  "Bisküvi": "#E6BC79",
-  "Çikolata": "#56321D",
-  "Muz": "#F1D018",
+  Bisküvi: "#E6BC79",
+  Çikolata: "#56321D",
+  Muz: "#F1D018",
   "Salted Caramel": "#d2691e",
   "Choco Nut": "#7B3F00",
   "Hindistan Cevizi": "#BA9051",
   "Raspberry Cheesecake": "#CC1E5F",
-  "Çilek": "#D61F33",
+  Çilek: "#D61F33",
 };
 
 function Index() {
@@ -88,6 +107,7 @@ function Index() {
         aromas={product.aromas}
         sizes={product.sizes}
         aromaColors={aromaColors}
+        features={product.features}
       />
     </>
   );

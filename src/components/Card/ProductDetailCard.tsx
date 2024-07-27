@@ -1,10 +1,20 @@
 import { useState } from "react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "../ui/accordion";
 
 interface Size {
   label: string;
   servings: number;
   isSelected: boolean;
   discount: number | null;
+}
+interface ProductFeature {
+  title: string;
+  description: string;
 }
 
 interface ProductDetailCardProps {
@@ -19,6 +29,7 @@ interface ProductDetailCardProps {
   unitPrice: number;
   expiryDate: string;
   aromaColors: { [key: string]: string };
+  features: ProductFeature[];
 }
 
 function ProductDetailCard({
@@ -33,6 +44,7 @@ function ProductDetailCard({
   unitPrice,
   expiryDate,
   aromaColors,
+  features,
 }: ProductDetailCardProps) {
   const [count, setCount] = useState(0);
 
@@ -54,10 +66,14 @@ function ProductDetailCard({
         </div>
         <div className="w-1/2 ms-20">
           <h1 className="font-semibold text-3xl leading-9">{name}</h1>
-          <p className="font-medium text-sm uppercase leading-6 text-[#636363]">{description}</p>
+          <p className="font-medium text-sm uppercase leading-6 text-[#636363]">
+            {description}
+          </p>
           <div className="">
             <span className="text-yellow-500 mr-2">⭐⭐⭐⭐⭐</span>
-            <span className="font-semibold text-sm text-[#333333]">{comment} Yorum</span>
+            <span className="font-semibold text-sm text-[#333333]">
+              {comment} Yorum
+            </span>
           </div>
           <div className="mt-2">
             {productType.map((productT, index) => (
@@ -129,13 +145,13 @@ function ProductDetailCard({
             </div>
           </div>
 
-          <div
-            className="my-4 flex items-center"
-            
-          >
-            <div className="flex items-center justify-center rounded-[4px]" style={{
-              border: "3px solid #E5E5E5",
-            }}>
+          <div className="my-4 flex items-center">
+            <div
+              className="flex items-center justify-center rounded-[4px]"
+              style={{
+                border: "3px solid #E5E5E5",
+              }}
+            >
               <button
                 onClick={decreaseCount}
                 className="w-[30px] h-[54px] bg-[#F7F7F7] font-semibold text-2xl"
@@ -155,7 +171,11 @@ function ProductDetailCard({
 
             <div className="ms-4">
               <button className="flex items-center justify-center rounded-[4px] font-semibold text-xl w-[350px] h-[55px] bg-black text-white">
-                <img src="src/assets/ProductDetailPage/svg/sepet.svg" className="pe-4" alt="" />
+                <img
+                  src="src/assets/ProductDetailPage/svg/sepet.svg"
+                  className="pe-4"
+                  alt=""
+                />
                 SEPETE EKLE
               </button>
             </div>
@@ -163,14 +183,22 @@ function ProductDetailCard({
 
           <div className="text-center mt-4 grid grid-cols-3 ">
             <div className="flex text-center">
-              <img src="src/assets/ProductDetailPage/svg/kargo.svg" className="w-[40px] h-[40px]" alt="" />
+              <img
+                src="src/assets/ProductDetailPage/svg/kargo.svg"
+                className="w-[40px] h-[40px]"
+                alt=""
+              />
               <p className="ps-3 text-xs font-normal leading-5 ">
                 Aynı Gün <br />
                 Ücretsiz Kargo
               </p>
             </div>
             <div className="flex ms-3">
-              <img src="src/assets/ProductDetailPage/svg/tick.svg" className="w-[40px] h-[40px]" alt="" />
+              <img
+                src="src/assets/ProductDetailPage/svg/tick.svg"
+                className="w-[40px] h-[40px]"
+                alt=""
+              />
               <p className="ps-3 text-center text-xs font-normal leading-5 ">
                 750.000+
                 <br />
@@ -178,7 +206,8 @@ function ProductDetailCard({
               </p>
             </div>
             <div className="flex">
-              <img  className="w-[40px] h-[40px]"
+              <img
+                className="w-[40px] h-[40px]"
                 src="src/assets/ProductDetailPage/svg/memnuniyet.svg"
                 alt=""
               />
@@ -194,6 +223,16 @@ function ProductDetailCard({
           <p className="mt-5 text-xs leading-4 font-medium text-gray-600">
             Son Kullanma Tarihi: {expiryDate}
           </p>
+          <div>
+            {features.map((feature, index) => (
+              <Accordion key={index} type="single" collapsible>
+                <AccordionItem value="item-1">
+                  <AccordionTrigger>{feature.title}</AccordionTrigger>
+                  <AccordionContent>{feature.description}</AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            ))}
+          </div>
         </div>
       </div>
     </div>
