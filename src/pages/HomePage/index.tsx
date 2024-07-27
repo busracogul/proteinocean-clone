@@ -1,19 +1,24 @@
-
 import PopularProductsSection from "./PopularProductsSection";
 import BestSellersSection from "./BestSellersSection";
 import ShowcaseSection from "@/components/ShowcaseSection";
-
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import Layout from "@/layout/Layout";
 
 function index() {
   return (
     <>
-      <ShowcaseSection imageSrc={"src/assets/HomePage/image/home-slider-banner1.jpg"}/>
-      <PopularProductsSection />
-      <BestSellersSection />
-      <ShowcaseSection
-        imageSrc={"src/assets/HomePage/image/home-slider-banner2.jpg"}
-        imageLogo={"src/assets/HomePage/image/LOGO_Beyaz.svg"}
-      />
+      <>
+        <ShowcaseSection
+          imageSrc={"src/assets/HomePage/image/home-slider-banner1.jpg"}
+        />
+        <PopularProductsSection />
+        <BestSellersSection />
+        <ShowcaseSection
+          imageSrc={"src/assets/HomePage/image/home-slider-banner2.jpg"}
+          imageLogo={"src/assets/HomePage/image/LOGO_Beyaz.svg"}
+        />
+      </>
     </>
   );
 }

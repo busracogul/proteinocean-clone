@@ -2,7 +2,7 @@
 import FooterText from './FooterText'
 import FooterMenu from './FooterMenu'
 
-function index() {
+function Footer() {
   return (
    <>
    <footer className='bg-base-dark'>
@@ -13,4 +13,4 @@ function index() {
   )
 }
 
-export default index
+export default Footer

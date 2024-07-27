@@ -1,4 +1,5 @@
-import Footer from "@/components/Footer/index";
+
+import Footer from "@/components/Footer/Footer";
 import Navbar from "@/components/Navbar/index";
 import { ReactElement } from "react";
 
@@ -11,7 +12,7 @@ function Layout({ children }: Layout) {
     <>
       <Navbar />
       {children}
-      <Footer />
+      <Footer/>
     </>
   );
 }
