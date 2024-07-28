@@ -1,7 +1,10 @@
 import ProductCard from "@/components/Card/ProductCard";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
-const BestsellersSection = () => {
+interface titleProps {
+  title: string;
+}
+const BestsellersSection = ({ title }: titleProps) => {
   const products = [
     {
       name: "Protein",
@@ -58,21 +61,12 @@ const BestsellersSection = () => {
   return (
     <section className="container mx-auto p-4">
       <h2 className="text-xl font-semibold leading-8 mb-4 flex justify-center">
-        ÇOK SATANLAR
+        {title}
       </h2>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         {products.map((product, index) => (
           <Link to={`/${product.name}`} key={index}>
-            <ProductCard
-              key={index}
-              name={product.name}
-              image={product.image}
-              description={product.description}
-              numberOfComments={product.numberOfComments}
-              rating={product.rating}
-              price={product.price}
-              discountPrice={product.discountPrice}
-            />
+            <ProductCard products={[product]} title={product.name} />
           </Link>
         ))}
       </div>
