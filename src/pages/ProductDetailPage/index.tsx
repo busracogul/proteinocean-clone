@@ -9,7 +9,8 @@ function index() {
       <div className="my-24">
         <BestsellersSection title="SON GÖRÜNTÜLENEN ÜRÜNLER" />
       </div>
-      <ProductComment/>
+      <ProductComment />
+      <BestsellersSection title="ÇOK SATANLAR" />
     </>
   );
 }
