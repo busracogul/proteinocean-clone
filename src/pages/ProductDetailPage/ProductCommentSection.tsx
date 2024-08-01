@@ -66,7 +66,7 @@ function ProductCommentSection() {
               <p className="text-yellow-500 mr-2 my-2 ">★★★★★</p>
               <p className="font-normal text-lg">10869 Yorum</p>
             </div>
-            <Button className="bg-[#387EC7] text-white rounded-[25px] mt-6">
+            <Button className="bg-gradient-to-r from-[#387EC7] to-[#1F23AA] text-white rounded-[25px] mt-6 px-8">
               Yorum (10869)
             </Button>
           </div>

@@ -55,7 +55,7 @@ function FooterMenu() {
   return (
     <>
       <div className="container text-base-gray ">
-        <div className="grid grid-cols-3 gap-52">
+        <div className="grid grid-cols-3 gap-30">
           {menuLinks.map((link, index) => (
             <div key={index}>
               {link.logo && <img src={link.logo} alt="Logo" className="mb-2" />}

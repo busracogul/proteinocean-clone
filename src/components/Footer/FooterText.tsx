@@ -2,14 +2,15 @@ function FooterText() {
   return (
     <>
       <div className="container py-8 text-white">
-      <span className="font-light leading-5 text-sm">🌟🌟🌟🌟🌟(140.000+)</span>
-        <div className="grid grid-cols-2">
-         
-          <p className="text-3xl font-medium mt-4 leading-10 w-[523px] h-[188px]">
+        <span className="font-light text-sm">
+          🌟🌟🌟🌟🌟(140.000+)
+        </span>
+        <div className="grid md:grid-cols-2 grid-cols-1 me-0 md:me-24">
+          <p className="text-3xl font-medium mt-4 leading-10 py-4 md:py-0">
             LABORATUVAR TESTLİ ÜRÜNLER AYNI GÜN & ÜCRETSİZ KARGO MEMNUNİYET
             GARANTİSİ
           </p>
-          <p className="font-light leading-9 pr-28 w-[462px] h-[150px]">
+          <p className="font-light leading-9 pt-4">
             200.000'den fazla ürün yorumumuza dayanarak, ürünlerimizi
             seveceğinize eminiz. Eğer herhangi bir sebeple memnun kalmazsan,
             bizimle iletişime geçtiğinde çözüme kavuşturacağız.

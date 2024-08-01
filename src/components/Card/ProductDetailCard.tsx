@@ -5,6 +5,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "../ui/accordion";
+import { Button } from "../ui/button";
 
 interface Size {
   label: string;
@@ -60,11 +61,11 @@ function ProductDetailCard({
 
   return (
     <div className="container">
-      <div className="flex mt-4">
-        <div className="w-1/2">
-          <img src={image} className="w-[587px] h-[587px]" alt={name} />
+      <div className="flex flex-col md:flex-row mt-4 mx-2 md:mx-0">
+        <div className="w-full md:w-1/2">
+          <img src={image} className=" w-full h-auto" alt={name} />
         </div>
-        <div className="w-1/2 ms-20">
+        <div className="w-full md:w-1/2 ms-0 md:ms-20">
           <h1 className="font-semibold text-3xl leading-9">{name}</h1>
           <p className="font-medium text-sm uppercase leading-6 text-[#636363]">
             {description}
@@ -85,7 +86,7 @@ function ProductDetailCard({
               </span>
             ))}
           </div>
-          <div className="w-[488px]">
+          <div className="">
             <hr className="mt-5 border-t-[2px] #cac2c2 w-full" />
           </div>
           <div className="mt-4">
@@ -135,7 +136,7 @@ function ProductDetailCard({
               ))}
             </div>
           </div>
-          <div className="mt-8 w-[488px]">
+          <div className="mt-8 ">
             <div className="flex justify-between">
               <p className="text-3xl font-bold">{price} TL</p>
               <p className="text-base pt-2 font-semibold text-gray-600">
@@ -145,7 +146,7 @@ function ProductDetailCard({
             </div>
           </div>
 
-          <div className="my-4 flex items-center">
+          <div className="my-4 flex items-center justify-between">
             <div
               className="flex items-center justify-center rounded-[4px]"
               style={{
@@ -170,14 +171,26 @@ function ProductDetailCard({
             </div>
 
             <div className="ms-4">
-              <button className="flex items-center justify-center rounded-[4px] font-semibold text-xl w-[350px] h-[55px] bg-black text-white">
+              {/*   <button className="flex items-center justify-center rounded-[4px] font-semibold text-xl w-[350px] h-[55px] bg-black text-white">
                 <img
                   src="src/assets/ProductDetailPage/svg/sepet.svg"
                   className="pe-4"
                   alt=""
                 />
                 SEPETE EKLE
-              </button>
+              </button> */}
+              <Button
+                variant="secondary"
+                type="submit"
+                className="lg:px-28 px-6 py-7 bg-black"
+              >
+                <img
+                  src="src/assets/HomePage/image/sepet.svg"
+                  className="pr-2"
+                  alt=""
+                />
+                SEPETE EKLE
+              </Button>
             </div>
           </div>
 
@@ -188,21 +201,21 @@ function ProductDetailCard({
                 className="w-[40px] h-[40px]"
                 alt=""
               />
-              <p className="ps-3 text-xs font-normal leading-5 ">
+              <p className="ps-1 md:ps-3 text-xs font-normal leading-5 ">
                 Aynı Gün <br />
                 Ücretsiz Kargo
               </p>
             </div>
-            <div className="flex ms-3">
+            <div className="flex">
               <img
                 src="src/assets/ProductDetailPage/svg/tick.svg"
                 className="w-[40px] h-[40px]"
                 alt=""
               />
-              <p className="ps-3 text-center text-xs font-normal leading-5 ">
+              <p className="ps-1 md:ps-3 text-center text-xs font-normal leading-5 ">
                 750.000+
                 <br />
-                Mutlu Müşteri{" "}
+                Mutlu Müşteri
               </p>
             </div>
             <div className="flex">
@@ -211,27 +224,29 @@ function ProductDetailCard({
                 src="src/assets/ProductDetailPage/svg/memnuniyet.svg"
                 alt=""
               />
-              <p className="ps-3 text-center text-xs font-normal leading-5">
+              <p className="ps-1 md:ps-3 text-center text-xs font-normal leading-5">
                 Memnuniyet <br />
                 Garantisi
               </p>
             </div>
           </div>
-          <div className="w-[488px]">
-            <hr className="mt-7 border-t-[2px] #cac2c2 w-full" />
-          </div>
-          <p className="mt-5 text-xs leading-4 font-medium text-gray-600">
-            Son Kullanma Tarihi: {expiryDate}
-          </p>
-          <div>
-            {features.map((feature, index) => (
-              <Accordion key={index} type="single" collapsible>
-                <AccordionItem value="item-1">
-                  <AccordionTrigger>{feature.title}</AccordionTrigger>
-                  <AccordionContent>{feature.description}</AccordionContent>
-                </AccordionItem>
-              </Accordion>
-            ))}
+          <div className="flex-col">
+            <div className="">
+              <hr className="mt-7 border-t-[2px] #cac2c2 w-full" />
+            </div>
+            <p className="mt-5 text-xs leading-4 font-medium text-gray-600">
+              Son Kullanma Tarihi: {expiryDate}
+            </p>
+            <div>
+              {features.map((feature, index) => (
+                <Accordion key={index} type="single" collapsible>
+                  <AccordionItem value="item-1">
+                    <AccordionTrigger>{feature.title}</AccordionTrigger>
+                    <AccordionContent>{feature.description}</AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+              ))}
+            </div>
           </div>
         </div>
       </div>
