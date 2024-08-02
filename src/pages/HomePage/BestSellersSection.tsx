@@ -3,11 +3,17 @@ import { Link } from "react-router-dom";
 
 interface titleProps {
   title: string;
+  discountClass: string;
+  gridClass: string;
 }
-const BestsellersSection = ({ title }: titleProps) => {
+const BestsellersSection = ({
+  title,
+  discountClass,
+  gridClass,
+}: titleProps) => {
   const products = [
     {
-      name: "Protein",
+      name: "WheyProtein",
       image: "src/assets/HomePage/image/1.jpg",
       description: "Yüksek kaliteli protein.",
       numberOfComments: 120,
@@ -63,10 +69,20 @@ const BestsellersSection = ({ title }: titleProps) => {
       <h2 className="text-xl font-semibold leading-8 mb-4 flex justify-center">
         {title}
       </h2>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+      <div
+        className={`grid ${
+          gridClass
+            ? gridClass
+            : "grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4"
+        }`}
+      >
         {products.map((product, index) => (
           <Link to={`/${product.name}`} key={index}>
-            <ProductCard products={[product]} title={product.name} />
+            <ProductCard
+              products={[product]}
+              title={product.name}
+              discountClassName={discountClass}
+            />
           </Link>
         ))}
       </div>

@@ -28,7 +28,7 @@ interface Product {
 
 const products: Product[] = [
   {
-    name: "Protein",
+    name: "WheyProtein",
     image: "src/assets/HomePage/image/1.jpg",
     description: "Yüksek kaliteli protein",
     comment: 10339,

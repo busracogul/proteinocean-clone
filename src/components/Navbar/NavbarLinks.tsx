@@ -3,7 +3,7 @@ function NavbarLinks() {
     <>
      <div className="bg-base-dark">
   <div className="container text-white flex justify-between py-2 uppercase">
-    <a href="#home" className="">
+    <a href="protein" className="">
       Protein
     </a>
     <a href="#about" className="">

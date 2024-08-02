@@ -11,16 +11,23 @@ interface ProductProps {
 interface ProductCardProps {
   title: string;
   products: ProductProps[];
+  discountClassName?: string;
 }
 
-function ProductCard({ products }: ProductCardProps) {
+function ProductCard({ products, discountClassName }: ProductCardProps) {
   return (
     <div className="container mx-auto p-4">
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+      <div className="flex grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         {products.map((product, index) => (
           <div key={index} className="relative sm:w-48 p-3 text-center">
             {product.discountPrice && (
-              <div className="absolute -top-2 -right-2 sm:-top-2 sm:-right-3 w-[60px] h-[50px] bg-[#ED2727] p-2 text-white rounded-bl-lg">
+              <div
+                className={`absolute ${
+                  discountClassName
+                    ? discountClassName
+                    : "-top-2 -right-2 sm:-top-2 sm:-right-3"
+                } w-[60px] h-[50px] bg-[#ED2727] p-2 text-white rounded-bl-lg`}
+              >
                 <div className="w-[42px] h-[20px] font-bold text-sm">
                   %{product.discountPrice}
                 </div>

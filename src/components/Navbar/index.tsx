@@ -1,16 +1,17 @@
-
-import NavbarSearch from './NavbarSearch'
-import NavbarLinks from './NavbarLinks'
-import NavbarSubMenu from './NavbarSubMenu'
+import NavbarSearch from "./NavbarSearch";
+import NavbarLinks from "./NavbarLinks";
+import NavbarSubMenu from "./NavbarSubMenu";
 
 function index() {
   return (
-   <>
-   <NavbarSearch/>
-   <NavbarLinks/>
-   <NavbarSubMenu/>
-   </>
-  )
+    <>
+      <nav>
+        <NavbarSearch />
+        <NavbarLinks />
+        <NavbarSubMenu />
+      </nav>
+    </>
+  );
 }
 
-export default index
+export default index;
