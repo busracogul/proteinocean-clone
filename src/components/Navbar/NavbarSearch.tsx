@@ -23,7 +23,7 @@ function NavbarSearch() {
         <div className="flex">
           <img src="src/assets/HomePage/image/LOGO_Siyah.svg" alt="" />
         </div>
-        <div className="flex w-full max-w-sm items-center py-4">
+        <div className="flex md:w-60 lg:w-full lg:max-w-sm items-center py-4">
           <Input
             type="text"
             placeholder="Aradığınız ürünü yazınız"
@@ -37,20 +37,23 @@ function NavbarSearch() {
             ARA
           </Button>
         </div>
-        <div className="flex items-center">
+        <div className="flex md:w-32 lg:w-44 items-center">
           <Button variant="outline">
             <Menubar>
               <MenubarMenu>
                 <MenubarTrigger>
                   <img
                     src="src/assets/HomePage/image/user.svg"
-                    className="pr-4"
+                    className=""
                     alt=""
                   />
-                  HESAP
+                  <div className="mx-2">
+                    HESAP
+                  </div>
+                  
                   <img
                     src="src/assets/HomePage/image/chevron.svg"
-                    className="pl-2"
+                    className=""
                     alt=""
                   />
                 </MenubarTrigger>
@@ -62,10 +65,10 @@ function NavbarSearch() {
             </Menubar>
           </Button>
         </div>
-        <div className="flex items-center">
+        <div className="flex md:w-28 lg:w-36 items-center">
           <Sheet>
             <SheetTrigger>
-              <Button variant="secondary" type="submit" className="px-12">
+              <Button variant="secondary" type="submit" className="px-6">
                 <img
                   src="src/assets/HomePage/image/sepet.svg"
                   className="pr-2"

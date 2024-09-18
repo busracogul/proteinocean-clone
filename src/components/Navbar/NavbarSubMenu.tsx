@@ -1,7 +1,7 @@
 function NavbarSubMenu() {
   return (
     <>
-      <div className="container py-3 grid-cols-3 hidden sm:grid">
+      <div className="container py-3 grid-cols-3 hidden md:grid md:none">
         <div className="flex">
           <img src="src/assets/HomePage/image/packet.svg" alt="" />
           <span className="font-bold text-xs ps-2">AYNI GÜN KARGO</span>
