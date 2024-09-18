@@ -1,3 +1,11 @@
+import { useState } from "react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@radix-ui/react-accordion";
+
 interface FooterMenu {
   title?: string;
   logo?: string;
@@ -7,6 +15,7 @@ interface FooterMenu {
 const menuLinks: FooterMenu[] = [
   {
     logo: "/src/assets/HomePage/image/LOGO_Beyaz.svg",
+    title: "Ojs Nutrition",
     links: [
       { name: "İletişim", url: "/iletisim" },
       { name: "Hakkımızda", url: "/iletisim" },
@@ -52,14 +61,22 @@ const menuLinks: FooterMenu[] = [
 ];
 
 function FooterMenu() {
+  const [openItem, setOpenItem] = useState<number | null>(null);
+
+  const handleToggle = (index: number) => {
+    setOpenItem(openItem === index ? null : index);
+  };
+
   return (
     <>
       <div className="container text-base-gray ">
-        <div className="grid grid-cols-3 gap-30">
+        <div className="hidden md:grid  grid-cols-3 gap-30">
           {menuLinks.map((link, index) => (
             <div key={index}>
               {link.logo && <img src={link.logo} alt="Logo" className="mb-2" />}
-              <h3 className="text-bold text-3xl text-white">{link.title}</h3>
+              {index !== 0 && (
+                <h3 className="text-bold text-3xl text-white">{link.title}</h3>
+              )}
               <ul>
                 {link.links.map((link, linkIndex) => (
                   <li key={linkIndex} className="font-normal leading-5 pt-2">
@@ -69,6 +86,40 @@ function FooterMenu() {
               </ul>
             </div>
           ))}
+        </div>
+
+        <div className="md:hidden">
+          <Accordion type="single" collapsible>
+            {menuLinks.map((link, index) => (
+              <AccordionItem value={`item-${index}`} key={index}>
+                {link.logo && (
+                  <img src={link.logo} alt="Logo" className="mb-2" />
+                )}
+                <AccordionTrigger onClick={() => handleToggle(index)}>
+                  <h3 className="uppercase text-xl my-4 text-white">
+                    <span className="me-2">
+                      {openItem === index ? "-" : "+"}
+                    </span>
+                    {link.title}
+                  </h3>
+                </AccordionTrigger>
+                <AccordionContent>
+                  <ul>
+                    {link.links.map((subLink, linkIndex) => (
+                      <li
+                        key={linkIndex}
+                        className="font-normal leading-5 pt-2"
+                      >
+                        <a href={subLink.url} className="hover:underline">
+                          {subLink.name}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
         </div>
 
         <div className="text-xs pt-24 pb-10">
