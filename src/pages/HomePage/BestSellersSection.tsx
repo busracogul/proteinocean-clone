@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 
 interface titleProps {
   title: string;
-  discountClass: string;
-  gridClass: string;
+  discountClass?: string;
+  gridClass?: string;
 }
 const BestsellersSection = ({
   title,
