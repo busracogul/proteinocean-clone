@@ -11,6 +11,7 @@ import {
   Sheet,
   SheetContent,
   SheetDescription,
+  SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -47,10 +48,7 @@ function NavbarSearch() {
                     className=""
                     alt=""
                   />
-                  <div className="mx-2">
-                    HESAP
-                  </div>
-                  
+                  <div className="mx-2">HESAP</div>
                   <img
                     src="src/assets/HomePage/image/chevron.svg"
                     className=""
@@ -68,7 +66,7 @@ function NavbarSearch() {
         <div className="flex md:w-28 lg:w-36 items-center">
           <Sheet>
             <SheetTrigger>
-              <Button variant="secondary" type="submit" className="px-6">
+              <Button variant="secondary" type="submit" className="px-10">
                 <img
                   src="src/assets/HomePage/image/sepet.svg"
                   className="pr-2"
@@ -77,14 +75,25 @@ function NavbarSearch() {
                 SEPET
               </Button>
             </SheetTrigger>
-            <SheetContent>
+            <SheetContent hideCloseButton className="h-full flex flex-col justify-between">
               <SheetHeader>
-                <SheetTitle>SEPETİM</SheetTitle>
-                <SheetDescription>
-                  This action cannot be undone. This will permanently delete
-                  your account and remove your data from our servers.
-                </SheetDescription>
+                <SheetTitle className="mt-3">SEPETİM</SheetTitle>
               </SheetHeader>
+              <SheetDescription className="flex justify-center items-center bg-[#F7F7F7] h-full font-normal">
+                Sepetinizde Ürün Bulunmamaktadır
+              </SheetDescription>
+              <SheetFooter className="block container mb-4">
+                <div className="uppercase text-right w-full font-bold leading-3 text-sm">
+                  toplam <span>0</span> tl
+                </div>
+                <Button
+                  className="w-full uppercase mt-2 font-bold text-lg leading-10"
+                  variant="dark"
+                >
+                  devam et
+                  <img src="src/assets/HomePage/image/chevron-white.svg" alt="" className="ms-4"/>
+                </Button>
+              </SheetFooter>
             </SheetContent>
           </Sheet>
         </div>

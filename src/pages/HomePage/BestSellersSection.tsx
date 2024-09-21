@@ -31,7 +31,7 @@ const BestsellersSection = ({
     },
     {
       name: "Sağlık",
-      image: "../src/assets/HomePage/image/3.jpg",
+      image: "/3.jpg",
       description: "Sağlığınız için gerekli takviyeler.",
       numberOfComments: 150,
       rating: 4.7,
