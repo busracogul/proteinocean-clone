@@ -31,7 +31,7 @@ const BestsellersSection = ({
     },
     {
       name: "Sağlık",
-      image: "src/assets/HomePage/image/3.jpg",
+      image: "../src/assets/HomePage/image/3.jpg",
       description: "Sağlığınız için gerekli takviyeler.",
       numberOfComments: 150,
       rating: 4.7,
@@ -40,7 +40,7 @@ const BestsellersSection = ({
     },
     {
       name: "Spor",
-      image: "src/assets/HomePage/image/4.jpg",
+      image: "/src/assets/HomePage/image/4.jpg",
       description: "Spor için gerekli ürünler.",
       numberOfComments: 200,
       rating: 4.8,
@@ -48,7 +48,7 @@ const BestsellersSection = ({
     },
     {
       name: "Gıda",
-      image: "src/assets/HomePage/image/5.jpg",
+      image: "./src/assets/HomePage/image/5.jpg",
       description: "Sağlıklı gıda ürünleri.",
       numberOfComments: 110,
       rating: 4.3,
