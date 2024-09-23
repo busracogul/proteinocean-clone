@@ -66,7 +66,7 @@ const BestsellersSection = ({
 
   return (
     <section className="container mx-auto p-4">
-      <h2 className="text-xl font-semibold leading-8 mb-4 flex justify-center">
+      <h2 className="text-xl font-semibold leading-8 md:mb-4 flex justify-center">
         {title}
       </h2>
       <div

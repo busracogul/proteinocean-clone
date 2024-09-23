@@ -37,7 +37,7 @@ function PopularProductsSection() {
   return (
     <>
       <div className="mx-1 md:container">
-        <div className="grid grid-cols-2 md:grid-cols-3 ">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-x-8">
           {products.map((product, index) => (
             <FeatureProductCard
               key={index}
