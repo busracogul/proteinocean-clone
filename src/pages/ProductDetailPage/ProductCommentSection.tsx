@@ -9,6 +9,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import RatingBars from "./RatingBar";
 
 const comments = [
   {
@@ -55,22 +56,30 @@ const comments = [
   },
 ];
 
+const ratings = [
+  { value: 9284 },
+  { value: 1316 },
+  { value: 226 },
+  { value: 32 },
+  { value: 11 },
+];
+
 function ProductCommentSection() {
   return (
     <>
       <div className="container">
-        <div className="flex justify-between pt-10">
-          <div className="">
-            <div className=" text-center">
-              <h2 className="font-normal text-4xl">4.8</h2>
-              <p className="text-yellow-500 mr-2 my-2 ">★★★★★</p>
-              <p className="font-normal text-lg">10869 Yorum</p>
-            </div>
+        <div className="flex flex-col md:flex-row md:grid-cols-2 justify-between pt-10">
+          <div className="text-center">
+            <h2 className="font-normal text-4xl">4.8</h2>
+            <p className="text-yellow-500 mr-2 my-2">★★★★★</p>
+            <p className="font-normal text-lg">10869 Yorum</p>
             <Button className="bg-gradient-to-r from-[#387EC7] to-[#1F23AA] text-white rounded-[25px] mt-6 px-8">
               Yorum (10869)
             </Button>
           </div>
-          <div>grafik</div>
+          <div className="mt-6 md:mt-0">
+            <RatingBars ratings={ratings} />
+          </div>
         </div>
         <div className="mt-10 space-y-4 mb-10">
           {comments.map((comment, index) => (
