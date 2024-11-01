@@ -1,15 +1,23 @@
+import instance from "@/api/api";
+
 interface ProductProps {
   name: string;
-  image: string;
-  description: string;
-  numberOfComments: number;
-  rating?: number;
-  price: number;
-  discountPrice?: number;
+  short_explanation: string;
+  slug: string;
+  price_info: {
+    profit: number;
+    total_price: number;
+    discounted_price?: number;
+    price_per_servings: number;
+    discount_percentage: number;
+  };
+  photo_src: string;
+  comment_count: number;
+  average_star: number;
 }
 
 interface ProductCardProps {
-  title: string;
+  title?: string;
   products: ProductProps[];
   discountClassName?: string;
 }
@@ -17,19 +25,17 @@ interface ProductCardProps {
 function ProductCard({ products, discountClassName }: ProductCardProps) {
   return (
     <div className="md:container md:mx-auto flex justify-center">
-      <div className="flex grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
         {products.map((product, index) => (
-          <div key={index} className="relative sm:w-48 mt-4 text-center ">
-            {product.discountPrice && (
+          <div key={index} className="relative sm:w-48 mt-4 text-center">
+            {product.price_info.discount_percentage && (
               <div
-                className={`absolute  ${
-                  discountClassName
-                    ? discountClassName
-                    : " -translate-y-5 translate-x-32  "
+                className={`absolute ${
+                  discountClassName || "-translate-y-5 translate-x-32"
                 } w-[60px] h-[50px] bg-[#ED2727] p-2 text-white rounded-bl-lg`}
               >
                 <div className="w-[42px] h-[20px] font-bold text-sm">
-                  %{product.discountPrice}
+                  %{product.price_info.discount_percentage}
                 </div>
                 <div className="text-xs font-normal w-[42px] h-[12px]">
                   İNDİRİM
@@ -37,39 +43,42 @@ function ProductCard({ products, discountClassName }: ProductCardProps) {
               </div>
             )}
             <img
-              src={product.image}
+              src={`${instance.defaults.baseURL}${product.photo_src}`}
               alt={product.name}
-              className="w-[168px] h-[168px] object-contain mb-2"
+              className="w-[168px] h-[168px] object-cover mb-2"
             />
-            <h2 className="text-xl h-8">{product.name}</h2>
-            <p className="uppercase font-medium text-xs leading-4 text-gray-400 mb-2 h-5">{product.description}</p>
-            <div className="mt-3 mb-4">
-              <span className="flex ml-2 w-36">
-                <img src="src/assets/HomePage/image/star.svg" alt="" />
-                <img src="src/assets/HomePage/image/star.svg" alt="" />
-                <img src="src/assets/HomePage/image/star.svg" alt="" />
-                <img src="src/assets/HomePage/image/star.svg" alt="" />
-                <img src="src/assets/HomePage/image/star.svg" alt="" />
-              </span>
-            </div>
+
+            <h2 className="text-xl mb-1">{product.name}</h2>
+            <p className="uppercase font-medium text-xs leading-4 text-gray-400">
+              {product.short_explanation}
+            </p>
+            {product.average_star ? (
+              <div className="mt-3 mb-4">
+                <span className="flex ml-2 w-36">
+                  <img src={product.average_star.toString()} />
+                </span>
+              </div>
+            ) : null}
             <div className="mb-2">
               <span className="text-gray-600">
-                {product.numberOfComments} yorum
+                {product.comment_count
+                  ? `${product.comment_count} yorum`
+                  : null}
               </span>
             </div>
             <div>
-              {product.discountPrice ? (
+              {product.price_info.discounted_price ? (
                 <>
                   <span className="text-gray-900 text-lg font-bold">
-                    {product.price} TL
+                    {product.price_info.discounted_price} TL
                   </span>
-                  <span className="text-red-500 text-sm line-through ml-2">
-                    {product.discountPrice} TL
+                  <span className="text-red-500 font-bold text-base line-through ml-2">
+                    {product.price_info.total_price} TL
                   </span>
                 </>
               ) : (
-                <span className="text-gray-900 text-lg font-bold">
-                  {product.price} TL
+                <span className="text-gray-900 text-xl leading-8 font-medium">
+                  {product.price_info.total_price} TL
                 </span>
               )}
             </div>
