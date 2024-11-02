@@ -24,7 +24,7 @@ function index() {
         <div className="md:hidden">
           <div className="my-3 flex justify-between">
             <Sheet>
-              <SheetTrigger>
+              <SheetTrigger asChild={true}>
                 <Button type="submit" className="px-6">
                   <img
                     src="src/assets/HomePage/image/menu-hamburger.svg"

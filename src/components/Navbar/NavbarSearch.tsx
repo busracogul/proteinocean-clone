@@ -39,7 +39,7 @@ function NavbarSearch() {
           </Button>
         </div>
         <div className="flex md:w-32 lg:w-44 items-center">
-          <Button variant="outline">
+          <Button asChild={true} variant="outline">
             <Menubar>
               <MenubarMenu>
                 <MenubarTrigger>
@@ -65,7 +65,7 @@ function NavbarSearch() {
         </div>
         <div className="flex md:w-28 lg:w-36 items-center">
           <Sheet>
-            <SheetTrigger>
+            <SheetTrigger asChild={true}>
               <Button variant="secondary" type="submit" className="px-10">
                 <img
                   src="src/assets/HomePage/image/sepet.svg"
@@ -75,7 +75,10 @@ function NavbarSearch() {
                 SEPET
               </Button>
             </SheetTrigger>
-            <SheetContent hideCloseButton className="h-full flex flex-col justify-between">
+            <SheetContent
+              hideCloseButton
+              className="h-full flex flex-col justify-between"
+            >
               <SheetHeader>
                 <SheetTitle className="mt-3">SEPETİM</SheetTitle>
               </SheetHeader>
@@ -91,7 +94,11 @@ function NavbarSearch() {
                   variant="dark"
                 >
                   devam et
-                  <img src="src/assets/HomePage/image/chevron-white.svg" alt="" className="ms-4"/>
+                  <img
+                    src="src/assets/HomePage/image/chevron-white.svg"
+                    alt=""
+                    className="ms-4"
+                  />
                 </Button>
               </SheetFooter>
             </SheetContent>
