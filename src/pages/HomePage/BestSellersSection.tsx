@@ -59,7 +59,7 @@ const BestsellersSection = ({
         }`}
       >
         {bestSellers.map((product, index) => (
-          <Link to={`/product/${product.slug}`} key={index}>
+          <Link to={`${product.slug}`} key={index}>
             <ProductCard
               products={[product]}
               title={product.name}

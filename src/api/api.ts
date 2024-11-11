@@ -9,4 +9,9 @@ export async function fetchListBestSellers() {
   return response.data;
 }
 
+export async function categoriesSection(){
+  const response=await instance.get("/api/v1/categories");
+  return response.data.data;
+}
+
 export default instance;

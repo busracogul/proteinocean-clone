@@ -19,7 +19,7 @@ const routes: RouteObject[] = [
         element: <ProductDetailPage />,
       },
       {
-        path: "/protein",
+        path: "/:category",
         element: <ProductListPage />,
       },
     ],
