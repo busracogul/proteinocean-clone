@@ -21,6 +21,7 @@ interface ProductCardProps {
   products: ProductProps[];
   discountClassName?: string;
   cardGrid?: string;
+  title?:string;
 }
 
 function ProductCard({
