@@ -49,7 +49,14 @@ function PopularProductsSection() {
       <div className="mx-1 md:container">
         <div className="grid grid-cols-2 md:grid-cols-3 gap-x-8">
           {categories.map((category, id) => (
-            <Link to={`${category.slug}`} key={id}>
+            <Link
+              to={`${category.slug}`}
+              key={id}
+              state={{
+                mainCategoryId: category.id,
+                categoryName: category.name,
+              }}
+            >
               <FeatureProductCard
                 name={category.name}
                 image={category.top_sellers?.[0]?.picture_src || ""}

@@ -5,27 +5,36 @@ interface ProductProps {
   short_explanation: string;
   slug: string;
   price_info: {
-    profit: number;
+    profit: number | null;
     total_price: number;
-    discounted_price?: number;
+    discounted_price?: number | null;
     price_per_servings: number;
-    discount_percentage: number;
+    discount_percentage: number | null;
   };
   photo_src: string;
   comment_count: number;
   average_star: number;
 }
+[];
 
 interface ProductCardProps {
-  title?: string;
   products: ProductProps[];
   discountClassName?: string;
+  cardGrid?: string;
 }
 
-function ProductCard({ products, discountClassName }: ProductCardProps) {
+function ProductCard({
+  products,
+  discountClassName,
+  cardGrid,
+}: ProductCardProps) {
   return (
     <div className="md:container md:mx-auto flex justify-center">
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+      <div
+        className={`${
+          cardGrid || "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6"
+        }`}
+      >
         {products.map((product, index) => (
           <div key={index} className="relative sm:w-48 mt-4 text-center">
             {product.price_info.discount_percentage && (
