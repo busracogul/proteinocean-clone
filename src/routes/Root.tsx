@@ -15,11 +15,11 @@ const routes: RouteObject[] = [
         element: <HomePage />,
       },
       {
-        path: "/:productName",
+        path: "product/:productSlug",
         element: <ProductDetailPage />,
       },
       {
-        path: "/:category",
+        path: "category/:category",
         element: <ProductListPage />,
       },
     ],

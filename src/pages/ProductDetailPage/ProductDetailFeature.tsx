@@ -1,114 +1,82 @@
+import { productDetail } from "@/api/api";
 import ProductDetailCard from "@/components/Card/ProductDetailCard";
-import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
-interface Size {
-  label: string;
-  servings: number;
-  isSelected: boolean;
-  discount: number | null;
-}
-interface ProductFeature {
-  title: string;
-  description: string;
-}
-
-interface Product {
+interface ProductDetailProps {
+  id?: string;
   name: string;
-  image: string;
-  description: string;
-  comment: number;
-  productType: string[];
-  price: number;
-  unitPrice: number;
-  expiryDate: string;
-  aromas: string[];
-  sizes: Size[];
-  features: ProductFeature[];
+  slug?: string;
+  short_explanation?: string;
+  explanation?: {
+    usage: string;
+    features: string;
+    description: string;
+    nutritional_content: {
+      ingredients: {
+        aroma: string;
+        value: string;
+      }[];
+      nutrition_facts: {};
+      amino_acid_facts: {};
+    };
+  };
+  main_category_id?: string;
+  sub_category_id?: string;
+  tags?: string[];
+  variants?: {
+    id: string;
+    size: {
+      gram: number;
+      pieces: number;
+      total_services: number;
+    };
+    aroma: string;
+    price: {};
+    photo_src: string;
+    is_available: boolean;
+  }[];
+  comment_count?: number;
+  average_star?: number;
 }
-
-const products: Product[] = [
-  {
-    name: "WheyProtein",
-    image: "src/assets/HomePage/image/1.jpg",
-    description: "Yüksek kaliteli protein",
-    comment: 10339,
-    productType: ["VEJETARYEN", "GLUTENSİZ"],
-    price: 549,
-    unitPrice: 34.31,
-    expiryDate: "07.2025",
-    aromas: [
-      "Bisküvi",
-      "Çikolata",
-      "Muz",
-      "Salted Caramel",
-      "Choco Nut",
-      "Hindistan Cevizi",
-      "Raspberry Cheesecake",
-      "Çilek",
-    ],
-    sizes: [
-      { label: "400G", servings: 16, isSelected: true, discount: null },
-      { label: "1.6KG", servings: 64, isSelected: false, discount: null },
-      {
-        label: "1.6KG X 2 ADET",
-        servings: 128,
-        isSelected: false,
-        discount: 6,
-      },
-    ],
-    features: [
-      {
-        title: "ÖZELLİKLER",
-        description: "özellikler açıklama",
-      },
-      {
-        title: "BESİN İÇERİĞİ",
-        description: "besin içeriği açıklama.",
-      },
-      {
-        title: "KULLANIM ŞEKLİ",
-        description: "kullanım şekli açıklama",
-      },
-    ],
-  },
-  // Diğer ürünler
-];
-
-const aromaColors: { [key: string]: string } = {
-  Bisküvi: "#E6BC79",
-  Çikolata: "#56321D",
-  Muz: "#F1D018",
-  "Salted Caramel": "#d2691e",
-  "Choco Nut": "#7B3F00",
-  "Hindistan Cevizi": "#BA9051",
-  "Raspberry Cheesecake": "#CC1E5F",
-  Çilek: "#D61F33",
-};
+[];
 
 function Index() {
-  const { productName } = useParams<{ productName: string }>();
-  const product = products.find((p) => p.name === productName);
+  const [productsDetailPage, setproductsDetail] =
+    useState<ProductDetailProps | null>(null);
 
-  if (!product) {
-    return <div>Ürün bulunamadı</div>;
-  }
+  const location = useLocation();
+  const productSlug = location.state?.productSlug;
+
+  useEffect(() => {
+    async function getProductDetail() {
+      try {
+        const fetchedCategories = await productDetail(productSlug);
+        const fetchedData = fetchedCategories.data;
+        setproductsDetail(fetchedData);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    getProductDetail();
+  }, [productSlug]);
 
   return (
     <>
-      <ProductDetailCard
-        name={product.name}
-        image={product.image}
-        description={product.description}
-        comment={product.comment}
-        productType={product.productType}
-        price={product.price}
-        unitPrice={product.unitPrice}
-        expiryDate={product.expiryDate}
-        aromas={product.aromas}
-        sizes={product.sizes}
-        aromaColors={aromaColors}
-        features={product.features}
-      />
+      {productsDetailPage ? (
+        <ProductDetailCard
+          name={productsDetailPage.name}
+          tags={productsDetailPage.tags}
+          comment_count={productsDetailPage.comment_count}
+          slug={productsDetailPage.slug}
+          short_explanation={productsDetailPage.short_explanation}
+          explanation={productsDetailPage.explanation}
+          average_star={productsDetailPage.average_star}
+        />
+      ) : (
+        <div>Ürün bulunamadı</div>
+      )}
     </>
   );
 }

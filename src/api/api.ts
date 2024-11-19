@@ -21,4 +21,9 @@ export async function productsGet(mainCategoryId: string) {
   return response.data;
 }
 
+export async function productDetail(productSlug:string){
+  const response = await instance.get(`/api/v1/products/${productSlug}`);
+  return response.data;
+}
+
 export default instance;

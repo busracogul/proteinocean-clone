@@ -7,45 +7,52 @@ import {
 } from "../ui/accordion";
 import { Button } from "../ui/button";
 
-interface Size {
-  label: string;
-  servings: number;
-  isSelected: boolean;
-  discount: number | null;
-}
-interface ProductFeature {
-  title: string;
-  description: string;
-}
-
 interface ProductDetailCardProps {
+  id?: string;
   name: string;
-  image: string;
-  description: string;
-  comment: number;
-  productType: string[];
-  aromas: string[];
-  sizes: Size[];
-  price: number;
-  unitPrice: number;
-  expiryDate: string;
-  aromaColors: { [key: string]: string };
-  features: ProductFeature[];
+  slug?: string;
+  short_explanation?: string;
+  explanation?: {
+    usage: string;
+    features: string;
+    description: string;
+    nutritional_content: {
+      ingredients: {
+        aroma: string;
+        value: string;
+      }[];
+      nutrition_facts: {};
+      amino_acid_facts: {};
+    };
+  };
+  main_category_id?: string;
+  sub_category_id?: string;
+  tags?: string[];
+  variants?: {
+    id: string;
+    size: {
+      gram: number;
+      pieces: number;
+      total_services: number;
+    };
+    aroma: string;
+    price: {};
+    photo_src: string;
+    is_available: boolean;
+  }[];
+  comment_count?: number;
+  average_star?: number;
 }
+[];
 
 function ProductDetailCard({
   name,
-  image,
-  description,
-  comment,
-  productType,
-  aromas,
-  sizes,
-  price,
-  unitPrice,
-  expiryDate,
-  aromaColors,
-  features,
+  tags,
+  comment_count,
+  slug,
+  short_explanation,
+  explanation,
+  average_star,
 }: ProductDetailCardProps) {
   const [count, setCount] = useState(0);
 
@@ -63,35 +70,36 @@ function ProductDetailCard({
     <div className="container">
       <div className="flex flex-col md:flex-row mt-4 mx-2 md:mx-0">
         <div className="w-full md:w-1/2">
-          <img src={image} className=" w-full h-auto" alt={name} />
+          {/* <img src={image} className=" w-full h-auto" alt={name} /> */}
         </div>
         <div className="w-full md:w-1/2 ms-0 md:ms-20">
           <h1 className="font-semibold text-3xl leading-9">{name}</h1>
           <p className="font-medium text-sm uppercase leading-6 text-[#636363]">
-            {description}
+            {short_explanation}
           </p>
           <div className="">
-            <span className="text-yellow-500 mr-2">⭐⭐⭐⭐⭐</span>
+            <span className="text-yellow-500 mr-2">{average_star}</span>
             <span className="font-semibold text-sm text-[#333333]">
-              {comment} Yorum
+              {comment_count} Yorum
             </span>
           </div>
           <div className="mt-2">
-            {productType.map((productT, index) => (
-              <span
-                key={index}
-                className="bg-[#F1F1F1] text-xs font-normal rounded-[24px] px-4 py-2 mr-2"
-              >
-                {productT}
-              </span>
-            ))}
+            {tags &&
+              tags.map((productT, index) => (
+                <span
+                  key={index}
+                  className="bg-[#F1F1F1] text-xs font-normal rounded-[24px] px-4 py-2 mr-2"
+                >
+                  {productT}
+                </span>
+              ))}
           </div>
           <div className="">
             <hr className="mt-5 border-t-[2px] #cac2c2 w-full" />
           </div>
           <div className="mt-4">
             <h3 className="text-lg font-medium">AROMA:</h3>
-            <div className="gap-2 mt-2">
+            {/* <div className="gap-2 mt-2">
               {aromas.map((aroma, index) => (
                 <button
                   key={index}
@@ -111,11 +119,11 @@ function ProductDetailCard({
                   ></span>
                 </button>
               ))}
-            </div>
+            </div> */}
           </div>
           <div className="mt-4">
             <h3 className="text-lg font-medium">BOYUT:</h3>
-            <div className="gap-2 mt-2">
+            {/* <div className="gap-2 mt-2">
               {sizes.map((size, index) => (
                 <button
                   key={index}
@@ -134,16 +142,16 @@ function ProductDetailCard({
                   )}
                 </button>
               ))}
-            </div>
+            </div> */}
           </div>
           <div className="mt-8 ">
-            <div className="flex justify-between">
+            {/* <div className="flex justify-between">
               <p className="text-3xl font-bold">{price} TL</p>
               <p className="text-base pt-2 font-semibold text-gray-600">
                 {" "}
                 {unitPrice} TL /Servis
               </p>
-            </div>
+            </div> */}
           </div>
 
           <div className="my-4 flex items-center justify-between">
@@ -234,10 +242,10 @@ function ProductDetailCard({
             <div className="">
               <hr className="mt-7 border-t-[2px] #cac2c2 w-full" />
             </div>
-            <p className="mt-5 text-xs leading-4 font-medium text-gray-600">
+            {/* <p className="mt-5 text-xs leading-4 font-medium text-gray-600">
               Son Kullanma Tarihi: {expiryDate}
-            </p>
-            <div>
+            </p> */}
+            {/* <div>
               {features.map((feature, index) => (
                 <Accordion key={index} type="single" collapsible>
                   <AccordionItem value="item-1">
@@ -246,7 +254,7 @@ function ProductDetailCard({
                   </AccordionItem>
                 </Accordion>
               ))}
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

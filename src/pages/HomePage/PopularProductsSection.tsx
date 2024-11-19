@@ -50,7 +50,7 @@ function PopularProductsSection() {
         <div className="grid grid-cols-2 md:grid-cols-3 gap-x-8">
           {categories.map((category, id) => (
             <Link
-              to={`${category.slug}`}
+              to={`category/${category.slug}`}
               key={id}
               state={{
                 mainCategoryId: category.id,
