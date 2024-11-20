@@ -17,8 +17,20 @@ interface ProductDetailProps {
         aroma: string;
         value: string;
       }[];
-      nutrition_facts: {};
-      amino_acid_facts: {};
+      nutrition_facts: {
+        ingredients: {
+          name: string;
+          amounts: string[];
+        }[];
+        portion_sizes: string[];
+      };
+      amino_acid_facts: {
+        ingredients: {
+          name: string;
+          amounts: string[];
+        }[];
+        portion_sizes: string[];
+      };
     };
   };
   main_category_id?: string;
@@ -68,6 +80,7 @@ function Index() {
         <ProductDetailCard
           name={productsDetailPage.name}
           tags={productsDetailPage.tags}
+          variants={productsDetailPage.variants}
           comment_count={productsDetailPage.comment_count}
           slug={productsDetailPage.slug}
           short_explanation={productsDetailPage.short_explanation}

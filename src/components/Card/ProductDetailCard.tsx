@@ -6,6 +6,7 @@ import {
   AccordionTrigger,
 } from "../ui/accordion";
 import { Button } from "../ui/button";
+import instance from "@/api/api";
 
 interface ProductDetailCardProps {
   id?: string;
@@ -21,8 +22,20 @@ interface ProductDetailCardProps {
         aroma: string;
         value: string;
       }[];
-      nutrition_facts: {};
-      amino_acid_facts: {};
+      nutrition_facts: {
+        ingredients: {
+          name: string;
+          amounts: string[];
+        }[];
+        portion_sizes: string[];
+      };
+      amino_acid_facts: {
+        ingredients: {
+          name: string;
+          amounts: string[];
+        }[];
+        portion_sizes: string[];
+      };
     };
   };
   main_category_id?: string;
@@ -49,7 +62,7 @@ function ProductDetailCard({
   name,
   tags,
   comment_count,
-  slug,
+  variants,
   short_explanation,
   explanation,
   average_star,
@@ -66,11 +79,111 @@ function ProductDetailCard({
     setCount((oldCount) => oldCount + 1);
   };
 
+  const explanationData = [
+    {
+      title: "ÖZELLİKLER",
+      content: explanation?.features,
+    },
+    {
+      title: "BESİN İÇERİĞİ",
+      content: explanation?.nutritional_content ? (
+        <>
+          {explanation?.nutritional_content.nutrition_facts && (
+            <div className="text-base">
+              <div className="flex mb-2 items-center space-y-4 border-b border-gray-300">
+                <h2 className="font-bold w-1/2">BESİN DEĞERLERİ</h2>
+                <h2 className="font-bold pb-3 w-1/2">
+                  {
+                    explanation.nutritional_content.nutrition_facts
+                      .portion_sizes
+                  }
+                </h2>
+              </div>
+
+              <div className="flex">
+                <ul className="space-y-4 w-full">
+                  {explanation.nutritional_content.nutrition_facts.ingredients.map(
+                    (item, index) => (
+                      <li
+                        key={index}
+                        className="flex justify-items-start border-b border-gray-300 pb-2"
+                      >
+                        <span className="w-6/12">{item.name}</span>
+                        <span className="w-4/12 text-left">
+                          {item.amounts.join(", ")}
+                        </span>
+                      </li>
+                    )
+                  )}
+                </ul>
+              </div>
+            </div>
+          )}
+
+          <h4 className="font-bold text-lg uppercase mt-4">İÇİNDEKİLER:</h4>
+          <ul className="list-disc text-base">
+            {explanation?.nutritional_content.ingredients.map(
+              (ingredient, idx) => (
+                <li key={idx} className="list-none ">
+                  <strong>{ingredient.aroma}:</strong> {ingredient.value}
+                </li>
+              )
+            )}
+          </ul>
+
+          {explanation?.nutritional_content.nutrition_facts && (
+            <div className="text-base">
+              <div className="flex mb-2 items-center space-y-4 border-b border-gray-300">
+                <h2 className="font-bold w-1/2">AMİNO ASİT DEĞERLERİ</h2>
+                <h2 className="font-bold pb-3 w-1/2">
+                  {
+                    explanation.nutritional_content.amino_acid_facts
+                      .portion_sizes
+                  }
+                </h2>
+              </div>
+
+              <div className="flex">
+                <ul className="space-y-4 w-full">
+                  {explanation.nutritional_content.amino_acid_facts.ingredients.map(
+                    (item, index) => (
+                      <li
+                        key={index}
+                        className="flex justify-items-start border-b border-gray-300 pb-2"
+                      >
+                        <span className="w-6/12">{item.name}</span>
+                        <span className="w-4/12 text-left">
+                          {item.amounts.join(", ")}
+                        </span>
+                      </li>
+                    )
+                  )}
+                </ul>
+              </div>
+            </div>
+          )}
+        </>
+      ) : (
+        "Besin içeriği bilgisi bulunamadı."
+      ),
+    },
+    {
+      title: "KULLANIM ŞEKLİ",
+      content: explanation?.usage,
+    },
+  ];
+
   return (
     <div className="container">
       <div className="flex flex-col md:flex-row mt-4 mx-2 md:mx-0">
         <div className="w-full md:w-1/2">
-          {/* <img src={image} className=" w-full h-auto" alt={name} /> */}
+          {variants && variants.length > 0 && (
+            <img
+              src={`${instance.defaults.baseURL}${variants[0].photo_src}`}
+              className="object-cover w-[370px] h-[370px] md:w-[354px] md:h-[354px] lg:w-[588px] lg:h-[588px]"
+              alt={name}
+            />
+          )}
         </div>
         <div className="w-full md:w-1/2 ms-0 md:ms-20">
           <h1 className="font-semibold text-3xl leading-9">{name}</h1>
@@ -245,16 +358,20 @@ function ProductDetailCard({
             {/* <p className="mt-5 text-xs leading-4 font-medium text-gray-600">
               Son Kullanma Tarihi: {expiryDate}
             </p> */}
-            {/* <div>
-              {features.map((feature, index) => (
+            <div>
+              {explanationData.map((feature, index) => (
                 <Accordion key={index} type="single" collapsible>
                   <AccordionItem value="item-1">
-                    <AccordionTrigger>{feature.title}</AccordionTrigger>
-                    <AccordionContent>{feature.description}</AccordionContent>
+                    <AccordionTrigger className="text-lg font-bold">
+                      {feature.title}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-base">
+                      {feature.content}
+                    </AccordionContent>
                   </AccordionItem>
                 </Accordion>
               ))}
-            </div> */}
+            </div>
           </div>
         </div>
       </div>
